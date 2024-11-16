@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Registrar usuario</h2>
+<div mat-dialog-content>
+  <form [formGroup]="userForm">
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Departamento</mat-label>
+        <mat-select formControlName="departamento">
+          <mat-option *ngFor="let depto of departamentos" [value]="depto.id">{{ depto.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Cargo</mat-label>
+        <mat-select formControlName="cargo">
+          <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">{{ cargo.label }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="usuario">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Primer Nombre</mat-label>
+        <input matInput formControlName="nombres">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Segundo Nombre</mat-label>
+        <input matInput formControlName="segundo_nombres">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Primer Apellido</mat-label>
+        <input matInput formControlName="apellidos">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Segundo Apellido</mat-label>
+        <input matInput formControlName="segundo_apellidos">
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardarUsuario()">Registrar</button>
+</div>

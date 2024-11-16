@@ -1,0 +1,143 @@
+<!-- <mat-toolbar color="#F3F4F6">
+  <div class="header">
+    <h5 style="color: #696d74">Módulo de Administración</h5>
+    <h2 style="color: #435370; margin-top: -1rem;">Administración de usuarios</h2>
+
+    <div class="filters">
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccione un Departamento</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let depto of departamentos" [value]="depto">{{ depto }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccione un Cargo</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let cargo of cargos" [value]="cargo">{{ cargo }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  
+
+</mat-toolbar> -->
+
+<!-- <mat-toolbar>
+  <div class="header">
+    <h5 style="color: #696d74">Módulo de Administración</h5>
+    <h2 style="color: #435370; margin-top: -1rem;">Administración de usuarios</h2>
+  </div>
+  
+  <div class="filters">
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccione un Departamento</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let depto of departamentos" [value]="depto">{{ depto }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Seleccione un Cargo</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let cargo of cargos" [value]="cargo">{{ cargo }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="new-user-btn" (click)="openUserDialog()">Crear nuevo usuario</button>
+  </div>
+</mat-toolbar> -->
+
+<div class="toolbar">
+  <div class="header">
+    <h5 class="module-title">Módulo de Administración</h5>
+    <h2 class="page-title">Administración de usuarios</h2>
+  </div>
+
+  <div class="filters">
+    <!-- Campo Departamento -->
+    <div class="form-group">
+      <select id="departamento" class="select-field">
+        <option value="" disabled selected>Seleccione un Departamento</option>
+        <option *ngFor="let depto of departamentos" [value]="depto">{{ depto }}</option>
+      </select>
+    </div>
+
+    <!-- Campo Cargo -->
+    <div class="form-group">
+      <select id="cargo" class="select-field">
+        <option value="" disabled selected>Seleccione un Cargo</option>
+        <option *ngFor="let cargo of cargos" [value]="cargo">{{ cargo }}</option>
+      </select>
+    </div>
+
+    <!-- Botón Crear Nuevo Usuario -->
+    <button class="new-user-btn" (click)="openUserDialog()">Crear nuevo usuario</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Tabla de Usuarios -->
+  <mat-card>
+    <table mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+
+      <!-- Usuario Column -->
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef style="color: #435370; font-weight: bold;"> Usuario </th>
+        <td mat-cell *matCellDef="let user" style="color: #242c39;"> {{user.usuario}} </td>
+      </ng-container>
+
+      <!-- Nombres Column -->
+      <ng-container matColumnDef="nombres">
+        <th mat-header-cell *matHeaderCellDef style="color: #435370; font-weight: bold;"> Nombres </th>
+        <td mat-cell *matCellDef="let user" style="color: #242c39;"> {{user.nombres}} </td>
+      </ng-container>
+
+      <!-- Apellidos Column -->
+      <ng-container matColumnDef="apellidos">
+        <th mat-header-cell *matHeaderCellDef style="color: #435370; font-weight: bold;"> Apellidos </th>
+        <td mat-cell *matCellDef="let user" style="color: #242c39;"> {{user.apellidos}} </td>
+      </ng-container>
+
+      <!-- Departamento Column -->
+      <ng-container matColumnDef="departamento">
+        <th mat-header-cell *matHeaderCellDef style="color: #435370; font-weight: bold;"> Departamento </th>
+        <td mat-cell *matCellDef="let user" style="color: #242c39;"> {{user.departamento}} </td>
+      </ng-container>
+
+      <!-- Cargo Column -->
+      <ng-container matColumnDef="cargo">
+        <th mat-header-cell *matHeaderCellDef style="color: #435370; font-weight: bold;"> Cargo </th>
+        <td mat-cell *matCellDef="let user" style="color: #242c39;"> {{user.cargo}} </td>
+      </ng-container>
+
+
+      <!-- Acciones Column -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef class="header-center" style="color: #435370;"> Acciones </th>
+        <td mat-cell *matCellDef="let user">
+          <div class="action-buttons">
+            <button mat-icon-button color="accent" aria-label="Editar" (click)="buscarUsuario(user.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <span class="action-label">Editar</span>
+
+            <button
+              mat-icon-button
+              color="warn"
+              aria-label="Eliminar"
+              (click)="eliminarUsuario(user.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <span class="action-label">Eliminar</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</div>
