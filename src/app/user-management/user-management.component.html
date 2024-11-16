@@ -59,7 +59,7 @@
     <div class="form-group">
       <select id="departamento" class="select-field">
         <option value="" disabled selected>Seleccione un Departamento</option>
-        <option *ngFor="let depto of departamentos" [value]="depto">{{ depto }}</option>
+        <option *ngFor="let depto of departamentos" [value]="depto.id">{{ depto.label }}</option>
       </select>
     </div>
 
@@ -67,7 +67,7 @@
     <div class="form-group">
       <select id="cargo" class="select-field">
         <option value="" disabled selected>Seleccione un Cargo</option>
-        <option *ngFor="let cargo of cargos" [value]="cargo">{{ cargo }}</option>
+        <option *ngFor="let cargo of cargos" [value]="cargo.id">{{ cargo.label }}</option>
       </select>
     </div>
 

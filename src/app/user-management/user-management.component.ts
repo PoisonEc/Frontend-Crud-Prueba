@@ -27,14 +27,19 @@ export class UserManagementComponent implements OnInit {
     // { usuario: 'wwhite', nombres: 'Walter', apellidos: 'White', departamento: 'Tecnologías de la Información', cargo: 'Desarrollador Frontend' }
   ];
 
-  departamentos: string[] = ['Tecnologías de la Información', 'Recursos Humanos', 'Finanzas'];
-  cargos: string[] = ['Administrador', 'Líder Frontend', 'Desarrollador Frontend'];
+  departamentos: any[] = [{id:1,label:'Tecnologías de la Información'}, {id:2,label:'Recursos Humanos'}, {id:3,label:'Finanzas'}];
+  cargos: any[] = [{id:1,label:'Administrador'}, {id:2,label:'Líder Frontend'}, {id:3,label:'Desarrollador Frontend'}];
 
+
+  usuariosFiltrados: Usuario[] = [];
+  filtroDepartamento: number = 0; // 0 para mostrar todos los departamentos
+  filtroCargo: number = 0;       // 0 para mostrar todos los cargos
   // Inyecta MatDialog en el constructor
   constructor(public dialog: MatDialog, private http: HttpClient,) {}
 
   ngOnInit(): void {
     this.listarUsuarios();
+
   }
 
   // Método para abrir el diálogo de registro de usuario
@@ -51,6 +56,15 @@ export class UserManagementComponent implements OnInit {
       }
     });
   }
+
+  filtrarUsuarios(): void {
+    this.usuariosFiltrados = this.usuarios.filter(usuario => {
+      const filtrarDepartamento = this.filtroDepartamento === 0 || usuario.departamento === this.filtroDepartamento.toString();
+      const filtrarCargo = this.filtroCargo === 0 || usuario.cargo === this.filtroCargo.toString();
+      return filtrarDepartamento && filtrarCargo;
+    });
+  }
+
   buscarUsuario(id: number): void {
     const url = `http://127.0.0.1:8000/api/user/${id}`;
     this.http.get<any>(url).subscribe({

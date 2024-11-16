@@ -10,8 +10,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class UserDialogComponent {
   userForm: FormGroup;
-  departamentos: any[] = [{id:1,label:'Tecnologías de la Información'}, {id:1,label:'Recursos Humanos'}, {id:1,label:'Finanzas'}];
-  cargos: any[] = [{id:1,label:'Administrador'}, {id:2,label:'Líder Frontend'}, {id:1,label:'Desarrollador Frontend'}];
+  departamentos: any[] = [{id:1,label:'Tecnologías de la Información'}, {id:2,label:'Recursos Humanos'}, {id:3,label:'Finanzas'}];
+  cargos: any[] = [{id:1,label:'Administrador'}, {id:2,label:'Líder Frontend'}, {id:3,label:'Desarrollador Frontend'}];
 
   constructor(
     private fb: FormBuilder,
